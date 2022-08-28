@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.hr.mapper.LocationMapper">
+
+	<select id="selectLocationList" resultType="map">
+		SELECT 
+			r.region_id regionId,
+			r.region_name regionName,
+			c.country_id countryId,
+			c.country_name countryName,
+			l.location_id locationId,
+			l.street_address streetAddress,
+			l.postal_code postalCode,
+			l.city city,
+			l.state_province stateProvince
+		FROM locations l INNER JOIN countries c
+		ON l.country_id = c.country_id
+		INNER JOIN regions r
+		ON c.region_id = r.region_id
+		ORDER BY r.region_id ASC
+	</select>
+
+
+	<!-- Location 추가 -->
+	<insert id="insertLocation"
+		parameterType="com.gd.hr.vo.Location">
+		INSERT INTO locations(
+		location_id,
+		street_address,
+		postal_code,
+		city,
+		state_province,
+		country_id
+		) VALUES(
+		#{locationId},
+		#{streetAddress},
+		#{postalCode},
+		#{city},
+		#{stateProvince},
+		#{countryId}
+		)
+	</insert>
+	<!-- countryId를 찾는 기능 -->
+	<select id="selectCountryId" parameterType="int" resultType="String">
+		SELECT country_id countryId
+		FROM countries
+		WHERE region_id = #{regionId}
+	</select>
+	
+	<!-- locationId를 찾는 기능 -->
+	<select id="selectLocationId" parameterType="String" resultType="int">
+		SELECT location_id locationId
+		FROM locations
+		WHERE country_id = #{countryId}
+	</select>
+	
+	<!-- Country에 의해 Location 삭제 -->
+	<delete id="deleteLocationByCountryId" parameterType="String">
+		DELETE FROM locations
+		WHERE country_id = #{countryId}
+	</delete>
+
+	<!--  Location 삭제  -->
+	<delete id="deleteLocationByLocationId" parameterType="int">
+		DELETE FROM locations
+		WHERE location_id = #{locationId}
+	</delete>
+
+
+
+
+</mapper>

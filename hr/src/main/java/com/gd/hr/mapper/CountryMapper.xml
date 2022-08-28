@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.hr.mapper.CountryMapper">
+	
+	<select id="selectCountryIdAndNameList" parameterType="int" resultType="com.gd.hr.vo.Country" > <!--  java.util.Map 약식 표현법, list, string, int (java.lang.Integer) -->
+		SELECT 
+			country_id countryId,
+			country_name countryName
+		FROM countries
+		WHERE region_id = #{regionId}
+	</select>
+	
+	<!-- Country 리스트 -->
+	<select id="selectCountryList" resultType="map" > <!--  java.util.Map 약식 표현법, list, string, int (java.lang.Integer) -->
+		SELECT c.country_id countryId,
+			   c.country_name countryName,
+			   r.region_id regionId,
+			   r.region_name regionName
+			   FROM countries c INNER JOIN regions r
+			   ON c.region_id = r.region_id
+			   ORDER BY r.region_id ASC
+	</select>
+	
+	<!-- Country 1개 상세보기 -->
+	<select id="selectCountryOne" parameterType="String" resultType="com.gd.hr.vo.Country">
+		SELECT
+			country_id countryId,
+			country_name countryName
+		FROM countries
+		WHERE country_id = #{countryId}
+	</select>
+	
+	<!-- Country 추가 -->
+	<insert id="insertCountry" parameterType="com.gd.hr.vo.Country">
+		INSERT INTO countries(
+			country_id,
+			country_name,
+			region_id
+		) VALUES(
+			#{countryId},
+			#{countryName},
+			#{regionId}
+		)	
+	</insert>
+	
+	<!-- Country 수정 -->
+	<update id="updateCountry" parameterType="com.gd.hr.vo.Country">
+		UPDATE countries
+		SET country_name = #{countryName},
+			region_id = #{regionId}
+		WHERE country_id = #{countryId}
+	</update>
+	
+	<!-- RegionId에 의해 Country삭제 -->
+	<delete id="deleteCountryByRegionId" parameterType="int">
+		DELETE FROM countries
+		WHERE region_id = #{regionId}
+	</delete>
+	
+	<!-- Country 삭제 -->
+	<delete id="deleteCountryByCountryId" parameterType="String"> <!--  String java.lang.String / string  마이바티스는 기본타입 못씀--> 
+		DELETE FROM countries
+		WHERE country_id = #{countryId}
+	</delete>
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.hr.mapper.RegionMapper">
+	
+	<select id="selectRegionList" resultType="com.gd.hr.vo.Region">
+		SELECT 
+			region_id regionId,
+			region_name regionName
+		FROM regions
+	</select>
+	
+	<select id="selectRegionOne" parameterType="int" resultType="com.gd.hr.vo.Region">
+		SELECT
+			region_id regionId,
+			region_name regionName
+		FROM regions
+		WHERE region_id = #{regionId}
+	</select>
+	
+	<insert id="insertRegion" parameterType="com.gd.hr.vo.Region">
+		INSERT INTO regions(
+			region_id,
+			region_name
+		) VALUES (
+			#{regionId},
+			#{regionName}
+		)
+	</insert>
+	
+	<update id="updateRegion" parameterType="com.gd.hr.vo.Region">
+		UPDATE regions
+		SET region_name = #{regionName}
+		WHERE region_id = #{regionId}
+	</update>
+	
+	<delete id="deleteRegion" parameterType="int"> <!-- String java.lang.String / string  마이바티스는 기본타입 못씀  -->
+		DELETE FROM regions
+		WHERE region_id = #{regionId}
+	</delete>
+</mapper>
