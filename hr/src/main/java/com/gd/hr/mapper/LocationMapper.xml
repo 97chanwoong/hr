@@ -20,7 +20,6 @@
 		ORDER BY r.region_id ASC
 	</select>
 
-
 	<!-- Location 추가 -->
 	<insert id="insertLocation"
 		parameterType="com.gd.hr.vo.Location">
@@ -40,6 +39,11 @@
 		#{countryId}
 		)
 	</insert>
+	<!-- location 수정 -->
+	<update>
+	
+	</update>
+	
 	<!-- countryId를 찾는 기능 -->
 	<select id="selectCountryId" parameterType="int" resultType="String">
 		SELECT country_id countryId
