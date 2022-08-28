@@ -40,8 +40,15 @@
 		)
 	</insert>
 	<!-- location 수정 -->
-	<update>
-	
+	<update id="updateLocation" parameterType="com.gd.hr.vo.Location">
+		UPDATE locations
+		SET
+			street_address = #{streetAddress},
+			postal_code = #{postalCode},
+			city = #{city},
+			state_province = #{stateProvince},
+			country_id = #{countryId}
+		WHERE location_id = #{locationId}
 	</update>
 	
 	<!-- countryId를 찾는 기능 -->
