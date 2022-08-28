@@ -1,6 +1,8 @@
 package com.gd.hr.service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,23 +40,13 @@ public class LocationService implements ILocationService {
 	}
 
 	@Override
-	public Location gettLocationOne(String locationId) {
-		return null;
+	public List<Map<String, Object>> getLocationOne(int locationId) {
+		return locationMapper.selectLocationOne(locationId);
 	}
 
 	@Override
 	public int modifyLocation(Location location) {
-		return 0;
-	}
-
-	@Override
-	public int removeLocationByRegionId(int regionId) {
-		return 0;
-	}
-
-	@Override
-	public int removeLocationByCountryId(String countryId) {
-		return 0;
+		return locationMapper.updateLocation(location);
 	}
 
 	// Location 삭제

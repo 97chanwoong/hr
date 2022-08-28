@@ -10,13 +10,9 @@ public interface ILocationService {
 	// Location을 추가하기 위한 Form
 	Map<String,Object> addLocationForm();
 	// Location 1개 상세보기
-	Location gettLocationOne(String locationId);
+	List<Map<String,Object>> getLocationOne(int locationId);
 	// Location 수정
 	int modifyLocation(Location location);
-	// RegionId에 의해 Location 삭제
-	int removeLocationByRegionId(int regionId);
-	// Country에 의해 Location 삭제
-	int removeLocationByCountryId(String countryId);
 	// Location 삭제
 	int removeLocationByLocationId(int locationId);
 }

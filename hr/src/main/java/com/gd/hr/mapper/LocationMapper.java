@@ -13,7 +13,7 @@ public interface LocationMapper {
 	// Location을 추가하기 위한 Form(Region -> Country -> Location)
 	Map<String,Object> addLocationForm();
 	// Location 1개 상세보기
-	Location selectLocationOne(String locationId);
+	List<Map<String,Object>> selectLocationOne(int locationId);
 	// Location 수정
 	int updateLocation(Location location);
 	// countryId를 찾는 기능

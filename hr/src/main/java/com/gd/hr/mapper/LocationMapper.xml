@@ -39,6 +39,24 @@
 		#{countryId}
 		)
 	</insert>
+	
+	<!-- Location 1개 상세보기 -->
+	<select id=" selectLocationOne" parameterType="int" resultType="map">
+		SELECT 
+		    l.location_id locationId,
+		    l.street_address streetAddress,
+		    l.postal_code postalCode,
+		    l.city city,
+		    l.state_province stateProvince,
+		    c.country_id countryId,
+		    c.country_name countryName,
+		    r.region_id regionId,
+		    r.region_name regionName
+		FROM locations l INNER JOIN countries c
+		ON l.country_id = c.country_id INNER JOIN regions r
+		ON c.region_id = r.region_id
+        WHERE l.location_id = #{locationId}
+	</select>
 	<!-- location 수정 -->
 	<update id="updateLocation" parameterType="com.gd.hr.vo.Location">
 		UPDATE locations
@@ -76,8 +94,5 @@
 		DELETE FROM locations
 		WHERE location_id = #{locationId}
 	</delete>
-
-
-
 
 </mapper>
