@@ -8,5 +8,6 @@
 	<a href="${pageContext.request.contextPath}/departmentList">부서관리</a>
 	<a href="${pageContext.request.contextPath}/employeeList">사원관리</a>
 	<a href="${pageContext.request.contextPath}/jobList">직책관리</a>
-	<a href="${pageContext.request.contextPath}/jobHistoryList">이력관리</a>
+	<a href="${pageContext.request.contextPath}/jobHistoryList">사원이력관리</a>
+	<a href="${pageContext.request.contextPath}/boardList">게시판</a>
 </div>

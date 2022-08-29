@@ -10,7 +10,7 @@ public interface ILocationService {
 	// Location을 추가하기 위한 Form
 	Map<String,Object> addLocationForm();
 	// Location 1개 상세보기
-	List<Map<String,Object>> getLocationOne(int locationId);
+	Map<String,Object> getLocationOne(int locationId);
 	// Location 수정
 	int modifyLocation(Location location);
 	// Location 삭제

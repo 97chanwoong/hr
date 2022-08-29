@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.hr.mapper.BoardfileMapper">
+	<!-- Boardfile 추가 -->
+		<insert id="insertBoardfile" parameterType="com.gd.hr.vo.Boardfile">
+			INSERT INTO boardfile(
+				boardfile_no,
+				board_no,
+				filename,
+				origin_name,
+				file_type,
+				file_size
+			) VALUES (
+				boardfile_seq.nextVal,
+				#{boardNo},
+				#{fileName},
+				#{originName},
+				#{fileType},
+				#{fileSize}
+			)
+		</insert>
+</mapper>

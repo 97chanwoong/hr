@@ -24,24 +24,24 @@
 	<insert id="insertLocation"
 		parameterType="com.gd.hr.vo.Location">
 		INSERT INTO locations(
-		location_id,
-		street_address,
-		postal_code,
-		city,
-		state_province,
-		country_id
+			location_id,
+			street_address,
+			postal_code,
+			city,
+			state_province,
+			country_id
 		) VALUES(
-		#{locationId},
-		#{streetAddress},
-		#{postalCode},
-		#{city},
-		#{stateProvince},
-		#{countryId}
+			#{locationId},
+			#{streetAddress},
+			#{postalCode},
+			#{city},
+			#{stateProvince},
+			#{countryId}
 		)
 	</insert>
 	
 	<!-- Location 1개 상세보기 -->
-	<select id=" selectLocationOne" parameterType="int" resultType="map">
+	<select id="selectLocationOne" parameterType="int" resultType="map">
 		SELECT 
 		    l.location_id locationId,
 		    l.street_address streetAddress,

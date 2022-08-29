@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.hr.mapper.BoardMapper">
+	<!-- Board 리스트 -->
+	<select id="selectBoardList" resultType="map">
+		SELECT
+			b.board_no
+	</select>
+	<!-- Board 추가 -->
+	<insert id="insertBoard" parameterType="com.gd.hr.vo.Board">
+		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE"> 
+			<!-- selectKey 란 : INSERT 후에 바로 SELECT를 하여 키를 가져오는 방법
+				 keyProperty : 반환해줄 키의 이름
+				 resultType : 반환해줄 타입
+				 order : selectKey 안의 쿼리를 insert문보다 먼저 실행한다면 before, 나중에 실행한다면 after   -->
+			<!-- com.gd.hr.vo.Board setBoardNo(selectKey)-->
+			<!--SELECT LAST_INSERT_ID()  MARIADB 에서 사용 가능  -->
+			<!-- boardNo 값이 안채워져 있으므로 seletKey로 채워준 후로 INSERT문 실행 -->
+			SELECT board_seq.NEXTVal FROM DUAL
+		</selectKey>
+		INSERT INTO board(
+			board_no,
+			board_title,
+			board_content,
+			board_date
+		) VALUES (
+			#{boardNo},
+			#{boardTitle},
+			#{boardContent},
+			SYSDATE <!-- 오늘 날짜 -->
+		)
+	</insert>
+	
+	
+</mapper>
