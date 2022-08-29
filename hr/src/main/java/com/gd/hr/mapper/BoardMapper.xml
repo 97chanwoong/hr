@@ -2,10 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gd.hr.mapper.BoardMapper">
 	<!-- Board 리스트 -->
-	<select id="selectBoardList" resultType="map">
+	<select id="selectBoardList" resultType="com.gd.hr.vo.Board">
 		SELECT
-			b.board_no
+			board_no boardNo,
+			board_title boardTitle,
+			board_content boardContent,
+			board_date boardDate
+		FROM board	
 	</select>
+	
+	<!-- Board 1개 상세보기 -->
+	<select id="selectBoardOne" parameterType="int" resultType="com.gd.hr.vo.Board">
+		SELECT
+			board_no boardNo,
+			board_title boardTitle,
+			board_content boardContent,
+			board_date boardDate
+		FROM board
+		WHERE board_no = #{boardNo}	
+	</select>
+	
 	<!-- Board 추가 -->
 	<insert id="insertBoard" parameterType="com.gd.hr.vo.Board">
 		<selectKey keyProperty="boardNo" resultType="int" order="BEFORE"> 
@@ -31,5 +47,18 @@
 		)
 	</insert>
 	
+	<!-- Board 수정 -->
+	<update id="updateBoard" parameterType="com.gd.hr.vo.Board">
+		UPDATE board
+		SET 
+			board_title = #{boardTitle},
+			board_content = #{boardContent}
+		WHERE board_no = #{boardNo}	
+	</update>
 	
+	<!-- Board 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM board
+		WHERE board_no = #{boardNo}
+	</delete>
 </mapper>

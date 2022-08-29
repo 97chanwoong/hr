@@ -28,8 +28,7 @@ public class BoardService implements IBoardService {
 		
 		// boardfile insert
 		// board입력이 성공하고 파일이 있을때
-		if(row == 1 && boardForm.getMultiL
-				ist() != null) {
+		if(row == 1 && boardForm.getMultiList() != null) {
 			for(MultipartFile mf : boardForm.getMultiList()) {
 				Boardfile boardfile = new Boardfile();
 				boardfile.setBoardNo(boardForm.getBoard().getBoardNo());
