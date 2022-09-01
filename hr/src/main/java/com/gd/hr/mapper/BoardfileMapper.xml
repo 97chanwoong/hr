@@ -19,4 +19,19 @@
 				#{fileSize}
 			)
 		</insert>
+	
+	<!-- Board 삭제시 Boardfile도 삭제 -->
+		<delete id="deleteBoardfileByBoard" parameterType="int">
+			DELETE FROM boardfile
+			WHERE board_no = #{boardNo}
+		</delete>
+		
+	<!-- Boardfile 삭제를 위한 Boardno 찾기 -->		
+		<select id="selectBoardfileByBoardNo" parameterType="int" resultType="com.gd.hr.vo.Boardfile">
+			SELECT
+				filename,
+				origin_name,
+			FROM boardfile
+			WHERE board_no = #{boardNo}
+		</select>
 </mapper>

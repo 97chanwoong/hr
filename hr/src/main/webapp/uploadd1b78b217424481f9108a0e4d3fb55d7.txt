@@ -1,0 +1,17 @@
+	@PostMapping("/addRegion")
+	public String addRegion(Region region) {
+		System.out.println(region);
+		int row = regionService.addRegion(region);
+		System.out.println(row);
+		return "redirect:/regionList"; // regionList redirect
+	}
+
+
+
+	@PostMapping("/addRegion")
+	public String addRegion(Region region) {
+		System.out.println(region);
+		int row = regionService.addRegion(region);
+		System.out.println(row);
+		return "redirect:/regionList"; // regionList redirect
+	}
